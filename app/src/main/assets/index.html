@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>سوق BHK | البيع والشراء في الجزائر</title>
+
+  <!-- Google Fonts: Cairo & Tajawal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            cairo: ['Cairo', 'Tajawal', 'Tahoma', 'Arial', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              950: '#071327',
+              900: '#0B1B36',
+              800: '#10274D',
+              700: '#183768',
+              600: '#224A87',
+            },
+            brand: {
+              orange: '#F97316',
+              orangeDark: '#EA580C',
+              orangeLight: '#FFF7ED',
+              gold: '#F59E0B',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --navy-900: #0B1B36;
+      --navy-800: #10274D;
+      --orange-500: #F97316;
+      --orange-600: #EA580C;
+      --bg-app: #F1F5F9;
+    }
+
+    * {
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Cairo', 'Tajawal', 'Segoe UI', Tahoma, Arial, sans-serif;
+      background-color: var(--bg-app);
+      color: #0F172A;
+      margin: 0;
+      padding: 0;
+      overscroll-behavior-y: contain;
+    }
+
+    /* Hide horizontal scrollbar while allowing touch scroll */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Line clamp fallback */
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Smooth modal and tab transitions */
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-up {
+      animation: fadeSlideUp 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes modalPop {
+      from {
+        opacity: 0;
+        transform: scale(0.95) translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .animate-modal {
+      animation: modalPop 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .pro-shimmer {
+      background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 45%, #D97706 100%);
+    }
+
+    .navy-gradient {
+      background: linear-gradient(155deg, #071327 0%, #0B1B36 45%, #163464 100%);
+    }
+
+    /* Safe bottom padding for fixed bottom bar */
+    .pb-nav-safe {
+      padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .bottom-nav-safe {
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+  </style>
+</head>
+<body class="font-cairo antialiased bg-slate-100 text-slate-900 min-h-screen select-none">
+
+  <!-- App Container (Mobile-First centered shell on larger screens) -->
+  <div id="appShell" class="mx-auto max-w-2xl min-h-screen bg-slate-100 relative shadow-2xl shadow-slate-900/10 flex flex-col">
+
+    <!-- ==================== TOP HEADER ==================== -->
+    <header class="navy-gradient text-white sticky top-0 z-30 rounded-b-[26px] shadow-lg shadow-navy-900/25 px-4 pt-3 pb-4">
+      <!-- Brand Row -->
+      <div class="flex items-center justify-between gap-2 mb-3">
+        <div class="flex items-center gap-2.5 cursor-pointer" onclick="switchTab('home')">
+          <!-- Custom App Logo SVG -->
+          <div class="w-11 h-11 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center shadow-inner shrink-0">
+            <svg viewBox="0 0 40 40" class="w-7 h-7" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 13V10.5C13 6.91 15.91 4 19.5 4C23.09 4 26 6.91 26 10.5V13" stroke="#F97316" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M7.5 14.5C7.5 13.12 8.62 12 10 12H30C31.38 12 32.5 13.12 32.5 14.5L34.2 31.5C34.37 33.24 33 34.75 31.25 34.75H8.75C7 34.75 5.63 33.24 5.8 31.5L7.5 14.5Z" fill="#FFFFFF" fill-opacity="0.14" stroke="#FFFFFF" stroke-width="2.2"/>
+              <path d="M21 17.5L27.5 24L21.5 30L15 23.5V17.5H21Z" fill="#F97316"/>
+              <circle cx="19" cy="21" r="1.5" fill="#0B1B36"/>
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <h1 class="text-xl font-black tracking-tight leading-none text-white">سوق <span class="text-orange-400">BHK</span></h1>
+              <span class="text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-400/30 px-1.5 py-0.5 rounded-md">DZ</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mt-0.5 font-medium">منصة البيع والشراء في الجزائر</p>
+          </div>
+        </div>
+
+        <!-- Account Status Pill -->
+        <button id="headerAccountBadge" onclick="switchTab('pro')" class="min-h-[40px] px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 transition active:scale-95 shadow-sm">
+          <!-- Populated by JS -->
+        </button>
+      </div>
+
+      <!-- Search + Wilaya + Categories (Shown prominently on Home) -->
+      <div id="homeFiltersBlock" class="space-y-2.5">
+        <!-- Search & Wilaya Row -->
+        <div class="flex items-center gap-2">
+          <div class="relative flex-1">
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="ابحث عن هاتف، سيارة، عقار..."
+              class="w-full h-11 pr-10 pl-8 rounded-2xl bg-white text-slate-900 placeholder-slate-400 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-sm"
+            />
+            <svg class="w-5 h-5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/>
+            </svg>
+            <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute left-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-xs font-bold">✕</button>
+          </div>
+
+          <!-- Wilaya Select -->
+          <div class="relative w-[132px] shrink-0">
+            <select id="wilayaFilter" class="w-full h-11 pr-8 pl-2 rounded-2xl bg-navy-700/90 text-white border border-white/15 text-xs font-bold appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 cursor-pointer">
+              <!-- Populated by JS -->
+            </select>
+            <svg class="w-4 h-4 text-orange-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+            </svg>
+            <svg class="w-3.5 h-3.5 text-slate-300 absolute left-2 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Category Horizontal Filter Pills -->
+        <div id="categoryFilterBar" class="flex items-center gap-2 overflow-x-auto no-scrollbar pt-0.5 pb-0.5">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </header>
+
+    <!-- ==================== MAIN CONTENT AREA ==================== -->
+    <main class="flex-1 px-3.5 pt-3.5 pb-nav-safe">
+
+      <!-- TAB 1: HOME (PRODUCTS GRID) -->
+      <section id="tab-home" class="tab-section space-y-3.5 animate-fade-up">
+
+        <!-- PRO Promo Banner (Hidden automatically once PRO is active) -->
+        <div id="homeProBanner" onclick="switchTab('pro')" class="cursor-pointer rounded-2xl bg-gradient-to-l from-orange-500 to-orange-600 text-white p-3.5 shadow-md shadow-orange-500/20 flex items-center justify-between gap-3 active:scale-[0.99] transition">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-xl shrink-0">👑</div>
+            <div>
+              <p class="text-sm font-extrabold leading-snug">هل أنت صاحب متجر؟ فعّل عرض 100 ألف (PRO)</p>
+              <p class="text-[11px] text-orange-100 font-medium">نشر غير محدود + شارة متجر موثوق بـ 100 ألف (1000 دج/سنة)</p>
+            </div>
+          </div>
+          <span class="bg-navy-900 text-white text-xs font-bold px-3 py-2 rounded-xl shrink-0 shadow">اشترك</span>
+        </div>
+
+        <!-- Results Counter & Sort Indicator -->
+        <div class="flex items-center justify-between px-0.5">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+            <h2 id="resultsTitle" class="text-sm font-extrabold text-slate-800">أحدث الإعلانات في الجزائر</h2>
+          </div>
+          <span id="resultsCount" class="text-xs font-bold text-slate-500 bg-white px-2.5 py-1 rounded-full border border-slate-200">0 إعلان</span>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="productsGrid" class="grid grid-cols-2 gap-3">
+          <!-- Cards populated by JS -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden bg-white rounded-3xl p-8 text-center border border-slate-200 shadow-sm mt-4">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-slate-100 flex items-center justify-center text-3xl mb-3">🔍</div>
+          <h3 class="text-base font-extrabold text-slate-800 mb-1">لا توجد إعلانات مطابقة</h3>
+          <p class="text-xs text-slate-500 mb-4">جرب تغيير كلمة البحث أو اختيار ولاية أو قسم آخر.</p>
+          <button onclick="resetAllFilters()" class="px-5 py-2.5 rounded-xl bg-navy-900 text-white text-xs font-bold hover:bg-navy-800 transition active:scale-95">
+            عرض كل الإعلانات
+          </button>
+        </div>
+      </section>
+
+      <!-- TAB 2: ADD AD FORM -->
+      <section id="tab-add" class="tab-section hidden space-y-4 animate-fade-up">
+
+        <!-- Quota / Plan Banner -->
+        <div id="quotaStatusCard" class="rounded-2xl p-4 shadow-sm border">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Add Ad Form Card -->
+        <form id="addAdForm" onsubmit="handlePublishAd(event)" class="bg-white rounded-3xl p-4 shadow-sm border border-slate-200/80 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <h2 class="text-lg font-black text-navy-900">إضافة إعلان جديد</h2>
+              <p class="text-xs text-slate-500">أدخل تفاصيل سلعتك بدقة لجذب المشترين بسرعة</p>
+            </div>
+            <span class="w-10 h-10 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center text-xl font-bold">➕</span>
+          </div>
+
+          <!-- Product Title -->
+          <div>
+            <label for="adTitle" class="block text-xs font-extrabold text-slate-700 mb-1.5">اسم المنتج <span class="text-red-500">*</span></label>
+            <input id="adTitle" type="text" required maxlength="80" placeholder="مثال: سامسونج S23 ألترا 256 جيغا"
+              class="w-full h-12 px-3.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-semibold focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" />
+          </div>
+
+          <!-- Price + Category -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label for="adPrice" class="block text-xs font-extrabold text-slate-700 mb-1.5">السعر (دج) <span class="text-red-500">*</span></label>
+              <div class="relative">
+                <input id="adPrice" type="number" required min="1" step="1" placeholder="مثال: 45000"
+                  class="w-full h-12 pr-3.5 pl-10 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 transition" />
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-extrabold text-orange-600">دج</span>
+              </div>
+            </div>
+
+            <div>
+              <label for="adCategory" class="block text-xs font-extrabold text-slate-700 mb-1.5">القسم <span class="text-red-500">*</span></label>
+              <select id="adCategory" required class="w-full h-12 px-3 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500">
+                <option value="هواتف">هواتف</option>
+                <option value="سيارات">سيارات</option>
+                <option value="ملابس">ملابس</option>
+                <option value="إلكترونيك">إلكترونيك</option>
+                <option value="عقارات">عقارات</option>
+                <option value="أخرى">أخرى</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Wilaya + Phone -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label for="adWilaya" class="block text-xs font-extrabold text-slate-700 mb-1.5">الولاية <span class="text-red-500">*</span></label>
+              <select id="adWilaya" required class="w-full h-12 px-3 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500">
+                <!-- Populated by JS -->
+              </select>
+            </div>
+
+            <div>
+              <label for="adPhone" class="block text-xs font-extrabold text-slate-700 mb-1.5">رقم الهاتف <span class="text-red-500">*</span></label>
+              <input id="adPhone" type="tel" required dir="ltr" placeholder="0550 12 34 56"
+                class="w-full h-12 px-3.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-left focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 transition" />
+            </div>
+          </div>
+
+          <!-- Social Media URL (Optional) -->
+          <div>
+            <label for="adSocial" class="block text-xs font-extrabold text-slate-700 mb-1.5">
+              رابط تواصل اجتماعي <span class="text-slate-400 font-semibold">(اختياري: فايسبوك، إنستغرام، تيك توك)</span>
+            </label>
+            <input id="adSocial" type="url" dir="ltr" placeholder="https://instagram.com/your_shop"
+              class="w-full h-12 px-3.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-semibold text-left focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 transition" />
+          </div>
+
+          <!-- Description -->
+          <div>
+            <label for="adDesc" class="block text-xs font-extrabold text-slate-700 mb-1.5">الوصف الكامل للمنتج <span class="text-red-500">*</span></label>
+            <textarea id="adDesc" required rows="3" maxlength="500" placeholder="اذكر الحالة، المواصفات، إمكانية التوصيل للولايات..."
+              class="w-full p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-semibold focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 transition resize-none"></textarea>
+          </div>
+
+          <!-- Local Image Picker using FileReader -->
+          <div>
+            <label class="block text-xs font-extrabold text-slate-700 mb-1.5">صورة المنتج من الهاتف</label>
+            <label for="adImageInput" class="block cursor-pointer rounded-2xl border-2 border-dashed border-slate-300 hover:border-orange-500 bg-slate-50 hover:bg-orange-50/40 transition p-4 text-center">
+              <input id="adImageInput" type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event)" />
+              <div id="imagePlaceholderView" class="space-y-1.5">
+                <div class="w-12 h-12 mx-auto rounded-2xl bg-navy-900/10 text-navy-900 flex items-center justify-center text-2xl">📷</div>
+                <p class="text-xs font-extrabold text-navy-900">اضغط لاختيار صورة من المعرض أو الكاميرا</p>
+                <p class="text-[11px] text-slate-400">يتم عرض الصورة محلياً فوراً وبشكل آمن</p>
+              </div>
+              <div id="imagePreviewContainer" class="hidden relative">
+                <img id="imagePreviewEl" src="" alt="معاينة الصورة" class="w-full h-44 object-cover rounded-xl shadow-sm" />
+                <span class="mt-2 inline-block text-xs font-bold text-orange-600 bg-orange-100 px-3 py-1 rounded-full">تغيير الصورة</span>
+              </div>
+            </label>
+          </div>
+
+          <!-- Mandatory Legal Terms Checkbox -->
+          <label class="flex items-start gap-2.5 p-3 rounded-2xl bg-amber-50/80 border border-amber-200 cursor-pointer">
+            <input id="adTermsCheck" type="checkbox" class="mt-0.5 w-5 h-5 rounded accent-orange-600 shrink-0 cursor-pointer" />
+            <span class="text-xs font-bold text-slate-800 leading-relaxed">
+              أوافق على <button type="button" onclick="switchTab('terms')" class="text-orange-600 underline font-extrabold">شروط الاستخدام</button> وأتعهد بعدم نشر سلع ممنوعة قانوناً.
+            </span>
+          </label>
+
+          <!-- Submit Button -->
+          <button type="submit" id="publishAdBtn" class="w-full h-13 py-3.5 rounded-2xl bg-gradient-to-l from-orange-500 to-orange-600 text-white font-black text-base shadow-lg shadow-orange-500/30 hover:brightness-105 active:scale-[0.98] transition flex items-center justify-center gap-2">
+            <span>نشر الإعلان الآن</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+          </button>
+        </form>
+      </section>
+
+      <!-- TAB 3: PRO SUBSCRIPTION PAGE -->
+      <section id="tab-pro" class="tab-section hidden space-y-4 animate-fade-up">
+
+        <!-- Hero Card -->
+        <div class="navy-gradient text-white rounded-3xl p-5 shadow-xl relative overflow-hidden">
+          <div class="absolute -left-8 -top-8 w-36 h-36 rounded-full bg-orange-500/20 blur-2xl pointer-events-none"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center gap-1.5 pro-shimmer text-navy-950 text-xs font-black px-3 py-1 rounded-full mb-3 shadow">
+              <span>👑</span>
+              <span>عرض 100 ألف — باقة المتاجر الموثوقة PRO</span>
+            </div>
+
+            <h2 class="text-2xl font-black leading-tight mb-1.5">ضاعف مبيعات متجرك في كل الجزائر!</h2>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              تجاوز الحد المجاني الشهري (5 منشورات) واجعل إعلاناتك تتصدر الصفحة الرئيسية دائماً مع شارة التوثيق الذهبية.
+            </p>
+
+            <!-- Price Tag -->
+            <div class="bg-white/10 border border-white/15 rounded-2xl p-4 flex items-center justify-between">
+              <div>
+                <p class="text-[11px] text-orange-300 font-bold">عرض 100 ألف السنوي</p>
+                <div class="flex items-baseline gap-1.5">
+                  <span class="text-3xl font-black text-white">100 ألف</span>
+                  <span class="text-sm font-extrabold text-orange-400">(1000 دج / سنة)</span>
+                </div>
+              </div>
+              <div class="text-left">
+                <span class="inline-block bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[11px] font-extrabold px-2.5 py-1 rounded-xl">أقل من 85 دج شهرياً</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRO Benefits List -->
+        <div class="bg-white rounded-3xl p-4 border border-slate-200 shadow-sm space-y-3">
+          <h3 class="text-sm font-black text-navy-900">مزايا عرض 100 ألف (PRO):</h3>
+
+          <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50">
+            <div class="w-9 h-9 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center text-lg shrink-0">♾️</div>
+            <div>
+              <h4 class="text-xs font-black text-slate-800">نشر غير محدود لمدة عام كامل</h4>
+              <p class="text-[11px] text-slate-500 mt-0.5">انشر أي عدد من المنتجات يومياً بدون قيد الـ 5 منشورات في الشهر.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50">
+            <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg shrink-0">🚀</div>
+            <div>
+              <h4 class="text-xs font-black text-slate-800">ظهور إعلاناتك في الأعلى دائماً</h4>
+              <p class="text-[11px] text-slate-500 mt-0.5">تظهر منتجات متجرك في مقدمة نتائج البحث والصفحة الرئيسية قبل الحسابات العادية.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3 p-3 rounded-2xl bg-slate-50">
+            <div class="w-9 h-9 rounded-xl bg-blue-100 text-navy-800 flex items-center justify-center text-lg shrink-0">🏅</div>
+            <div>
+              <h4 class="text-xs font-black text-slate-800">شارة "متجر موثوق PRO" الذهبية</h4>
+              <p class="text-[11px] text-slate-500 mt-0.5">تمنح الشارة الذهبية ثقة فورية للمشترين وتظهر تلقائياً على جميع إعلاناتك السابقة والجديدة.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active PRO Status OR Activation Flow -->
+        <div id="proActiveBox" class="hidden bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-400 rounded-3xl p-5 text-center space-y-2 shadow-sm">
+          <div class="w-14 h-14 mx-auto rounded-2xl pro-shimmer flex items-center justify-center text-3xl shadow">👑</div>
+          <h3 class="text-lg font-black text-navy-900">حسابك مُفعّل على باقة PRO!</h3>
+          <p class="text-xs font-bold text-slate-600 leading-relaxed">
+            أنت الآن "متجر موثوق PRO". يمكنك نشر إعلانات غير محدودة طوال العام وتظهر الشارة الذهبية على كل إعلاناتك.
+          </p>
+          <button onclick="switchTab('add')" class="mt-2 px-6 py-3 rounded-xl bg-navy-900 text-white text-xs font-black shadow active:scale-95 transition">
+            أضف إعلاناً غير محدود الآن
+          </button>
+        </div>
+
+        <div id="proActivationBox" class="bg-white rounded-3xl p-4 border border-slate-200 shadow-sm space-y-4">
+          <!-- BaridiMob Payment Button -->
+          <div class="space-y-2">
+            <h3 class="text-sm font-black text-navy-900">الخطوة 1: الدفع عبر بريدي موب (BaridiMob)</h3>
+            <p class="text-xs text-slate-500">تواصل معنا للحصول على رقم الحساب البريدي (RIP) وإرسال وصل الدفع واستلام كود التفعيل فوراً.</p>
+            <button type="button" onclick="openBaridiMobModal()" class="w-full py-3.5 px-4 rounded-2xl bg-navy-900 hover:bg-navy-800 text-white font-extrabold text-sm shadow-md flex items-center justify-center gap-2 active:scale-[0.98] transition">
+              <span>💳</span>
+              <span>تواصل معنا للدفع (بريدي موب)</span>
+            </button>
+          </div>
+
+          <hr class="border-slate-100" />
+
+          <!-- Secret Activation Code -->
+          <div class="space-y-2.5">
+            <label for="proCodeInput" class="block text-sm font-black text-navy-900">الخطوة 2: أدخل كود التفعيل السري</label>
+            <div class="flex gap-2">
+              <input id="proCodeInput" type="text" dir="ltr" placeholder="مثال: BHK2026"
+                class="flex-1 h-12 px-4 rounded-xl bg-slate-50 border border-slate-200 text-sm font-black uppercase tracking-widest text-center focus:bg-white focus:outline-none focus:ring-2 focus:ring-orange-500" />
+              <button type="button" onclick="activateProCode()" class="px-5 h-12 rounded-xl bg-gradient-to-l from-orange-500 to-orange-600 text-white font-black text-sm shadow-md shadow-orange-500/25 active:scale-95 transition shrink-0">
+                تفعيل
+              </button>
+            </div>
+            <p class="text-[11px] text-slate-500 font-semibold bg-slate-50 px-3 py-2 rounded-xl border border-slate-100">
+              💡 للتجربة الفورية، استخدم كود التفعيل التجريبي: <button type="button" onclick="fillDemoCode()" class="font-black text-orange-600 underline">BHK2026</button>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: TERMS & DISCLAIMER -->
+      <section id="tab-terms" class="tab-section hidden space-y-4 animate-fade-up">
+        <div class="navy-gradient text-white rounded-3xl p-5 shadow-md">
+          <div class="flex items-center gap-2.5 mb-2">
+            <span class="w-10 h-10 rounded-2xl bg-white/15 flex items-center justify-center text-xl">⚖️</span>
+            <div>
+              <h2 class="text-lg font-black">شروط الاستخدام وإخلاء المسؤولية</h2>
+              <p class="text-[11px] text-slate-300">منصة سوق BHK - الجزائر</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disclaimer Card -->
+        <div class="bg-white rounded-3xl p-4 border border-slate-200 shadow-sm space-y-3">
+          <h3 class="text-sm font-black text-navy-900 flex items-center gap-2">
+            <span class="w-2 h-5 rounded-full bg-orange-500 inline-block"></span>
+            إخلاء المسؤولية القانونية
+          </h3>
+          <p class="text-xs text-slate-600 leading-relaxed font-semibold">
+            تعمل منصة <strong class="text-navy-900">"سوق BHK"</strong> كمنصة وساطة إعلانية إلكترونية فقط لربط البائعين بالمشترين في مختلف ولايات الجزائر. لا تتدخل المنصة في التفاوض، التسعير، الدفع، الشحن، أو فحص السلع المعروضة، ولا تتحمل أي مسؤولية قانونية أو مالية عن المعاملات التي تتم بين البائع والمشتري.
+          </p>
+          <div class="p-3 rounded-2xl bg-blue-50 border border-blue-100 text-xs text-navy-900 font-bold leading-relaxed">
+            🛡️ نصيحة أمان: احرص دائماً على معاينة المنتج شخصياً ومطابقته للمواصفات قبل تسليم أي مبلغ مالي، وفضّل إتمام المعاملات في أماكن عامة وآمنة.
+          </div>
+        </div>
+
+        <!-- Prohibited Items in Algeria -->
+        <div class="bg-white rounded-3xl p-4 border border-red-200 shadow-sm space-y-3">
+          <h3 class="text-sm font-black text-red-700 flex items-center gap-2">
+            <span>🚫</span>
+            قائمة السلع الممنوع نشرها قانوناً في الجزائر
+          </h3>
+          <p class="text-xs text-slate-600 font-semibold">يُمنع منعاً باتاً نشر أو ترويج أي من السلع التالية، ويتحمل المعلن كامل المسؤولية القانونية:</p>
+
+          <ul class="space-y-2 text-xs font-bold text-slate-700">
+            <li class="flex items-start gap-2.5 p-2.5 rounded-xl bg-red-50/70">
+              <span class="text-red-600 font-black">1.</span>
+              <span><strong>الأدوية والمستحضرات الصيدلانية:</strong> جميع الأدوية، المكملات غير المرخصة، والأجهزة الطبية المقيدة.</span>
+            </li>
+            <li class="flex items-start gap-2.5 p-2.5 rounded-xl bg-red-50/70">
+              <span class="text-red-600 font-black">2.</span>
+              <span><strong>الأسلحة والذخائر:</strong> الأسلحة النارية والبيضاء، الصواعق الكهربائية، الألعاب النارية والمفرقعات.</span>
+            </li>
+            <li class="flex items-start gap-2.5 p-2.5 rounded-xl bg-red-50/70">
+              <span class="text-red-600 font-black">3.</span>
+              <span><strong>العملة الصعبة:</strong> عروض بيع أو شراء العملات الأجنبية خارج الأطر البنكية والمصرفية المعتمدة قانوناً.</span>
+            </li>
+            <li class="flex items-start gap-2.5 p-2.5 rounded-xl bg-red-50/70">
+              <span class="text-red-600 font-black">4.</span>
+              <span><strong>المواد المحظورة والممنوعات:</strong> التبغ، السجائر الإلكترونية غير القانونية، المؤثرات العقلية، وأي مواد مخالفة للقوانين الجزائرية.</span>
+            </li>
+            <li class="flex items-start gap-2.5 p-2.5 rounded-xl bg-red-50/70">
+              <span class="text-red-600 font-black">5.</span>
+              <span><strong>السلع المقلدة والمسروقة:</strong> المنتجات المقلدة التي تنتهك حقوق الملكية الفكرية، أو أي مقتنيات مجهولة المصدر أو مسروقة.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ==================== FIXED BOTTOM NAVIGATION ==================== -->
+    <nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-2xl bg-white/95 backdrop-blur-md border-t border-slate-200 z-40 shadow-[0_-6px_24px_rgba(11,27,54,0.08)] bottom-nav-safe">
+      <div class="grid grid-cols-4 h-[68px] px-1">
+        <!-- Home -->
+        <button onclick="switchTab('home')" data-tab="home" class="nav-btn flex flex-col items-center justify-center gap-1 text-orange-600 font-extrabold transition min-h-[48px]">
+          <div class="nav-pill px-3.5 py-1 rounded-full bg-orange-100 transition">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z"/>
+              <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z"/>
+            </svg>
+          </div>
+          <span class="text-[11px]">الرئيسية</span>
+        </button>
+
+        <!-- Add Ad -->
+        <button onclick="switchTab('add')" data-tab="add" class="nav-btn flex flex-col items-center justify-center gap-1 text-slate-500 font-bold transition min-h-[48px]">
+          <div class="nav-pill px-3.5 py-1 rounded-full transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <span class="text-[11px]">أضف إعلان</span>
+        </button>
+
+        <!-- Store PRO Subscription -->
+        <button onclick="switchTab('pro')" data-tab="pro" class="nav-btn flex flex-col items-center justify-center gap-1 text-slate-500 font-bold transition min-h-[48px]">
+          <div class="nav-pill px-3.5 py-1 rounded-full transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/>
+            </svg>
+          </div>
+          <span class="text-[11px]">اشتراك المتاجر</span>
+        </button>
+
+        <!-- Terms -->
+        <button onclick="switchTab('terms')" data-tab="terms" class="nav-btn flex flex-col items-center justify-center gap-1 text-slate-500 font-bold transition min-h-[48px]">
+          <div class="nav-pill px-3.5 py-1 rounded-full transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+            </svg>
+          </div>
+          <span class="text-[11px]">شروط الاستخدام</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ==================== MODAL 1: PRODUCT DETAILS & CONTACT ==================== -->
+  <div id="productModal" class="hidden fixed inset-0 z-50 bg-navy-950/70 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4" onclick="closeModalOnBackdrop(event, 'productModal')">
+    <div class="bg-white w-full max-w-lg rounded-t-3xl sm:rounded-3xl max-h-[90vh] overflow-y-auto shadow-2xl animate-modal">
+      <div class="relative">
+        <img id="modalImage" src="" alt="صورة المنتج" class="w-full h-60 object-cover bg-slate-200" />
+        <button onclick="closeProductModal()" aria-label="إغلاق" class="absolute top-3 left-3 w-10 h-10 rounded-full bg-navy-950/70 text-white flex items-center justify-center font-black text-lg backdrop-blur hover:bg-navy-950 transition">✕</button>
+        <div id="modalProBadge" class="hidden absolute top-3 right-3 pro-shimmer text-navy-950 text-xs font-black px-3 py-1.5 rounded-full shadow-md flex items-center gap-1">
+          <span>👑</span>
+          <span>متجر موثوق PRO</span>
+        </div>
+      </div>
+
+      <div class="p-5 space-y-4">
+        <!-- Meta Tags -->
+        <div class="flex flex-wrap items-center gap-2 text-xs font-bold">
+          <span id="modalCategory" class="px-2.5 py-1 rounded-lg bg-navy-900/10 text-navy-900"></span>
+          <span id="modalWilaya" class="px-2.5 py-1 rounded-lg bg-orange-50 text-orange-700 flex items-center gap-1"></span>
+          <span id="modalDate" class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-500 mr-auto"></span>
+        </div>
+
+        <!-- Title & Price -->
+        <div>
+          <h3 id="modalTitle" class="text-lg font-black text-slate-900 leading-snug mb-1"></h3>
+          <p id="modalPrice" class="text-2xl font-black text-orange-600"></p>
+        </div>
+
+        <!-- Description -->
+        <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-100">
+          <p class="text-xs font-extrabold text-slate-500 mb-1">تفاصيل المنتج:</p>
+          <p id="modalDescription" class="text-sm font-semibold text-slate-700 leading-relaxed whitespace-pre-line"></p>
+        </div>
+
+        <!-- Seller Info & Contact Actions -->
+        <div class="space-y-2.5 pt-1">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-600 px-1">
+            <span>التواصل المباشر مع البائع:</span>
+            <span id="modalPhoneText" dir="ltr" class="font-black text-navy-900"></span>
+          </div>
+
+          <!-- Call & WhatsApp Grid -->
+          <div class="grid grid-cols-2 gap-2.5">
+            <a id="modalCallBtn" href="#" class="h-12 rounded-2xl bg-navy-900 hover:bg-navy-800 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-md active:scale-95 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+              </svg>
+              <span>اتصال مباشر</span>
+            </a>
+
+            <a id="modalWhatsappBtn" href="#" target="_blank" rel="noopener noreferrer" class="h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-md active:scale-95 transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.766.469 3.484 1.344 5l-1.406 5.156 5.281-1.375c1.469.797 3.109 1.219 4.75 1.219 5.516 0 9.969-4.453 9.969-9.969S17.547 2 12.031 2zm5.813 14.125c-.25.703-1.438 1.344-2 1.422-.531.078-1.203.109-1.938-.125-.453-.141-1.031-.328-1.781-.656-3.125-1.359-5.156-4.531-5.313-4.734-.156-.203-1.266-1.688-1.266-3.219s.797-2.281 1.078-2.594c.281-.313.625-.391.828-.391s.406.016.594.016c.188 0 .438-.078.688.531.25.609.859 2.109.938 2.266.078.156.125.344.016.547-.094.203-.156.328-.313.516-.156.188-.328.406-.469.547-.156.156-.313.328-.141.641.188.313.813 1.344 1.75 2.172 1.203 1.078 2.219 1.406 2.531 1.563.313.156.5.125.688-.078.188-.203.797-.938 1.016-1.25.219-.313.422-.266.719-.156.297.109 1.875.891 2.203 1.047.313.156.531.234.609.359.078.141.078.797-.172 1.5z"/>
+              </svg>
+              <span>واتساب</span>
+            </a>
+          </div>
+
+          <!-- Optional Social Media Button -->
+          <a id="modalSocialBtn" href="#" target="_blank" rel="noopener noreferrer" class="hidden w-full h-12 rounded-2xl bg-gradient-to-l from-orange-500 to-pink-600 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-md active:scale-95 transition">
+            <span>🔗</span>
+            <span id="modalSocialLabel">زيارة صفحة البائع</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 2: LIMIT REACHED ALERT (5/5 FREE) ==================== -->
+  <div id="limitModal" class="hidden fixed inset-0 z-50 bg-navy-950/75 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnBackdrop(event, 'limitModal')">
+    <div class="bg-white w-full max-w-md rounded-3xl p-6 text-center shadow-2xl space-y-4 animate-modal border-t-4 border-orange-500">
+      <div class="w-16 h-16 mx-auto rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center text-3xl shadow-inner">⚠️</div>
+      <h3 class="text-lg font-black text-navy-900">انتهت فرصك المجانية لهذا الشهر!</h3>
+      <p class="text-sm font-bold text-slate-600 leading-relaxed">
+        لقد استهلكت جميع إعلاناتك المجانية لهذا الشهر (5/5 منشورات). هل تريد مواصلة النشر بدون حدود؟ قم بتفعيل عرض 100 ألف (1000 دج سنوياً) للحصول على نشر غير محدود وشارة متجر موثوق PRO!
+      </p>
+      <div class="flex flex-col gap-2.5 pt-1">
+        <button onclick="goToProFromLimit()" class="w-full h-12 rounded-2xl bg-gradient-to-l from-orange-500 to-orange-600 text-white font-black text-sm shadow-lg shadow-orange-500/30 active:scale-95 transition">
+          👑 تفعيل عرض 100 ألف (1000 دج/سنة)
+        </button>
+        <button onclick="closeLimitModal()" class="w-full h-11 rounded-2xl bg-slate-100 text-slate-600 font-bold text-sm hover:bg-slate-200 transition">
+          إغلاق
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 3: BARIDIMOB PAYMENT INFO ==================== -->
+  <div id="baridiModal" class="hidden fixed inset-0 z-50 bg-navy-950/75 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModalOnBackdrop(event, 'baridiModal')">
+    <div class="bg-white w-full max-w-md rounded-3xl p-5 shadow-2xl space-y-4 animate-modal">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="text-base font-black text-navy-900">الدفع عبر بريدي موب (BaridiMob)</h3>
+        <button onclick="closeBaridiModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 font-black">✕</button>
+      </div>
+
+      <div class="bg-navy-900 text-white rounded-2xl p-4 space-y-2 text-xs">
+        <p class="text-orange-300 font-bold">معلومات التحويل السنوي (عرض 100 ألف):</p>
+        <div class="flex items-center justify-between bg-white/10 p-2.5 rounded-xl">
+          <span class="text-slate-300">رقم الحساب (RIP):</span>
+          <span dir="ltr" class="font-black tracking-wider text-white">00799999 0026481290 45</span>
+        </div>
+        <div class="flex items-center justify-between bg-white/10 p-2.5 rounded-xl">
+          <span class="text-slate-300">المبلغ المطلوب:</span>
+          <span class="font-black text-amber-300">100 ألف (1000 دج) / سنة</span>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-600 font-semibold leading-relaxed">
+        بعد إتمام التحويل، أرسل لقطة شاشة لوصل الدفع عبر واتساب فريق الدعم لاستلام كود التفعيل السري الخاص بمتجرك خلال دقائق.
+      </p>
+
+      <div class="flex flex-col gap-2">
+        <a href="https://wa.me/213550002026?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D8%A3%D9%83%D9%8A%D8%AF%20%D8%AF%D9%81%D8%B9%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20PRO%20%D9%81%D9%8A%20%D8%B3%D9%88%D9%82%20BHK%20%D8%B9%D8%A8%D8%B1%20%D8%A8%D8%B1%D9%8A%D8%AF%D9%8A%20%D9%85%D9%88%D8%A8"
+           target="_blank" rel="noopener noreferrer"
+           class="w-full h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm flex items-center justify-center gap-2 shadow-md">
+          <span>إرسال وصل الدفع عبر واتساب</span>
+        </a>
+        <button onclick="closeBaridiModal()" class="w-full h-11 rounded-2xl bg-slate-100 text-slate-600 font-bold text-sm">حسناً</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TOAST NOTIFICATION ==================== -->
+  <div id="toastEl" class="hidden fixed top-5 left-1/2 -translate-x-1/2 z-[60] max-w-sm w-[90%] px-4 py-3 rounded-2xl bg-navy-900 text-white text-xs font-extrabold shadow-xl border border-white/15 text-center animate-modal">
+  </div>
+
+  <!-- ==================== APPLICATION JAVASCRIPT ==================== -->
+  <script>
+    // ---------- Constants & Algerian Data ----------
+    const STORAGE_KEYS = {
+      ADS: 'souk_bhk_ads_v1',
+      PRO: 'souk_bhk_pro_v1',
+      USAGE: 'souk_bhk_usage_v1'
+    };
+
+    const DEMO_ACTIVATION_CODE = 'BHK2026';
+    const FREE_MONTHLY_LIMIT = 5;
+
+    const WILAYAS = [
+      { code: '01', name: 'أدرار' },
+      { code: '02', name: 'الشلف' },
+      { code: '03', name: 'الأغواط' },
+      { code: '04', name: 'أم البواقي' },
+      { code: '05', name: 'باتنة' },
+      { code: '06', name: 'بجاية' },
+      { code: '07', name: 'بسكرة' },
+      { code: '08', name: 'بشار' },
+      { code: '09', name: 'البليدة' },
+      { code: '10', name: 'البويرة' },
+      { code: '11', name: 'تمنراست' },
+      { code: '12', name: 'تبسة' },
+      { code: '13', name: 'تلمسان' },
+      { code: '14', name: 'تيارت' },
+      { code: '15', name: 'تيزي وزو' },
+      { code: '16', name: 'الجزائر' },
+      { code: '17', name: 'الجلفة' },
+      { code: '18', name: 'جيجل' },
+      { code: '19', name: 'سطيف' },
+      { code: '20', name: 'سعيدة' },
+      { code: '21', name: 'سكيكدة' },
+      { code: '22', name: 'سيدي بلعباس' },
+      { code: '23', name: 'عنابة' },
+      { code: '24', name: 'قالمة' },
+      { code: '25', name: 'قسنطينة' },
+      { code: '26', name: 'المدية' },
+      { code: '27', name: 'مستغانم' },
+      { code: '28', name: 'المسيلة' },
+      { code: '29', name: 'معسكر' },
+      { code: '30', name: 'ورقلة' },
+      { code: '31', name: 'وهران' },
+      { code: '32', name: 'البيض' },
+      { code: '33', name: 'إليزي' },
+      { code: '34', name: 'برج بوعريريج' },
+      { code: '35', name: 'بومرداس' },
+      { code: '36', name: 'الطارف' },
+      { code: '37', name: 'تندوف' },
+      { code: '38', name: 'تيسمسيلت' },
+      { code: '39', name: 'الوادي' },
+      { code: '40', name: 'خنشلة' },
+      { code: '41', name: 'سوق أهراس' },
+      { code: '42', name: 'تيبازة' },
+      { code: '43', name: 'ميلة' },
+      { code: '44', name: 'عين الدفلى' },
+      { code: '45', name: 'النعامة' },
+      { code: '46', name: 'عين تموشنت' },
+      { code: '47', name: 'غرداية' },
+      { code: '48', name: 'غليزان' },
+      { code: '49', name: 'تيميمون' },
+      { code: '50', name: 'برج باجي مختار' },
+      { code: '51', name: 'أولاد جلال' },
+      { code: '52', name: 'بني عباس' },
+      { code: '53', name: 'عين صالح' },
+      { code: '54', name: 'عين قزام' },
+      { code: '55', name: 'تقرت' },
+      { code: '56', name: 'جانت' },
+      { code: '57', name: 'المغير' },
+      { code: '58', name: 'المنيعة' }
+    ];
+
+    const CATEGORIES = ['الكل', 'هواتف', 'سيارات', 'ملابس', 'إلكترونيك', 'عقارات', 'أخرى'];
+
+    // Crisp offline-safe SVG product artwork generator for the 6 initial realistic Algerian listings
+    function makeProductIllustration(bgTop, bgBottom, accent, label, iconSvg) {
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="${bgTop}"/>
+              <stop offset="100%" stop-color="${bgBottom}"/>
+            </linearGradient>
+          </defs>
+          <rect width="600" height="450" fill="url(#g)"/>
+          <circle cx="510" cy="70" r="110" fill="${accent}" fill-opacity="0.16"/>
+          <circle cx="90" cy="390" r="130" fill="#ffffff" fill-opacity="0.06"/>
+          <g transform="translate(300, 195)">${iconSvg}</g>
+          <text x="300" y="375" text-anchor="middle" fill="#ffffff" fill-opacity="0.92" font-family="Arial, sans-serif" font-weight="bold" font-size="24">${label}</text>
+        </svg>`;
+      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    }
+
+    const INITIAL_SEED_ADS = [
+      {
+        id: 'seed-1',
+        title: 'آيفون 14 برو ماكس 256 جيغا كالجديد',
+        price: 185000,
+        category: 'هواتف',
+        wilaya: 'الجزائر',
+        phone: '0550123456',
+        socialUrl: 'https://instagram.com/alger_mobile_pro',
+        description: 'هاتف iPhone 14 Pro Max سعة 256 جيغا، بطارية 96%، مع العلبة الأصلية وكابل الشحن. غير مفتوح إطلاقاً والبيع بالضمان من المحل في حيدرة.',
+        image: makeProductIllustration(
+          '#0B1B36', '#1E3A8A', '#F97316', 'iPhone 14 Pro Max',
+          '<rect x="-55" y="-105" width="110" height="200" rx="22" fill="#0F172A" stroke="#F97316" stroke-width="5"/><rect x="-46" y="-92" width="92" height="174" rx="14" fill="#1E293B"/><rect x="-18" y="-82" width="36" height="10" rx="5" fill="#020617"/><circle cx="-18" cy="-40" r="14" fill="#334155" stroke="#94A3B8" stroke-width="3"/><circle cx="16" cy="-40" r="14" fill="#334155" stroke="#94A3B8" stroke-width="3"/><circle cx="-1" cy="-12" r="14" fill="#334155" stroke="#94A3B8" stroke-width="3"/>'
+        ),
+        isPro: true,
+        ownerId: 'seed_store_1',
+        createdAt: Date.now() - 1000 * 60 * 30
+      },
+      {
+        id: 'seed-2',
+        title: 'رونو كليو 4 GT Line 2019 صبيغة دار',
+        price: 2650000,
+        category: 'سيارات',
+        wilaya: 'سطيف',
+        phone: '0661987654',
+        socialUrl: 'https://facebook.com/setif.auto.dz',
+        description: 'Renault Clio 4 GT Line سنة 2019، محرك 1.5 dCi اقتصادي جداً، ماشية 118 ألف كلم حقيقية، 00 صبيغة، شاشة لمس وكاميرا خلفية ومكيف ممتاز.',
+        image: makeProductIllustration(
+          '#111827', '#334155', '#F59E0B', 'Clio 4 GT Line',
+          '<path d="M-135 20 L-115 -35 C-105 -60 -75 -75 -30 -75 H45 C85 -75 110 -50 130 -15 L145 20 C152 35 145 55 125 55 H-125 C-145 55 -145 35 -135 20 Z" fill="#F97316"/><path d="M-85 -22 L-65 -58 H35 L70 -22 Z" fill="#0F172A"/><circle cx="-82" cy="55" r="28" fill="#0F172A" stroke="#E2E8F0" stroke-width="6"/><circle cx="82" cy="55" r="28" fill="#0F172A" stroke="#E2E8F0" stroke-width="6"/>'
+        ),
+        isPro: true,
+        ownerId: 'seed_store_2',
+        createdAt: Date.now() - 1000 * 60 * 90
+      },
+      {
+        id: 'seed-3',
+        title: 'لابتوب HP Victus RTX 3050 للألعاب والتصميم',
+        price: 148000,
+        category: 'إلكترونيك',
+        wilaya: 'قسنطينة',
+        phone: '0770456789',
+        socialUrl: 'https://tiktok.com/@constantine_tech',
+        description: 'حاسوب محمول احترافي معالج Core i5 الجيل 12، رام 16 جيغا، SSD 512، كارت شاشة RTX 3050 4GB، شاشة 144Hz. متوفر توصيل 58 ولاية.',
+        image: makeProductIllustration(
+          '#0F172A', '#312E81', '#38BDF8', 'HP Victus Gaming',
+          '<rect x="-115" y="-85" width="230" height="140" rx="12" fill="#1E293B" stroke="#38BDF8" stroke-width="4"/><polygon points="-135,62 135,62 155,88 -155,88" fill="#64748B"/><rect x="-98" y="-68" width="196" height="106" rx="6" fill="#0F172A"/><path d="M-28 -30 L0 12 L28 -30" stroke="#F97316" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
+        ),
+        isPro: true,
+        ownerId: 'seed_store_3',
+        createdAt: Date.now() - 1000 * 60 * 140
+      },
+      {
+        id: 'seed-4',
+        title: 'جاكيت شتوي رجالي مبطن جودة تركية',
+        price: 6500,
+        category: 'ملابس',
+        wilaya: 'باتنة',
+        phone: '0554321987',
+        socialUrl: 'https://instagram.com/batna_style_wear',
+        description: 'جاكيت شتوي أنيق ومضاد للمطر والبرد، متوفر بمقاسات M و L و XL و XXL باللونين الأسود والكحلي. إمكانية الدفع عند الاستلام.',
+        image: makeProductIllustration(
+          '#1E293B', '#475569', '#F97316', 'جاكيت شتوي تركي',
+          '<path d="M-38 -85 L0 -68 L38 -85 L95 -52 L115 28 L76 42 L60 -15 V85 H-60 V-15 L-76 42 L-115 28 L-95 -52 Z" fill="#F97316" stroke="#FFFFFF" stroke-width="4"/><line x1="0" y1="-68" x2="0" y2="85" stroke="#0B1B36" stroke-width="5"/>'
+        ),
+        isPro: false,
+        ownerId: 'seed_user_4',
+        createdAt: Date.now() - 1000 * 60 * 240
+      },
+      {
+        id: 'seed-5',
+        title: 'شقة F3 للبيع طابق ثاني بعقد ملكية',
+        price: 11500000,
+        category: 'عقارات',
+        wilaya: 'وهران',
+        phone: '0662334455',
+        socialUrl: 'https://facebook.com/oran.immobilier.dz',
+        description: 'شقة F3 مساحتها 92 م² مهيأة بالكامل في حي هادئ وقريب من المرافق والمدارس في بئر الجير، وهران. ماء، غاز، كهرباء، وعقد ملكية ودفتر عقاري.',
+        image: makeProductIllustration(
+          '#064E3B', '#0F766E', '#FBBF24', 'شقة F3 - وهران',
+          '<polygon points="0,-95 -120,-5 120,-5" fill="#F97316"/><rect x="-92" y="-5" width="184" height="105" fill="#F8FAFC" rx="6"/><rect x="-24" y="35" width="48" height="65" fill="#0B1B36" rx="4"/><rect x="-72" y="18" width="34" height="34" fill="#38BDF8" rx="4"/><rect x="38" y="18" width="34" height="34" fill="#38BDF8" rx="4"/>'
+        ),
+        isPro: false,
+        ownerId: 'seed_user_5',
+        createdAt: Date.now() - 1000 * 60 * 320
+      },
+      {
+        id: 'seed-6',
+        title: 'تروتينات كهربائية قابلة للطي بطارية 48V',
+        price: 78000,
+        category: 'أخرى',
+        wilaya: 'البليدة',
+        phone: '0771889900',
+        socialUrl: '',
+        description: 'تروتينات كهربائية قوية بسرعة تصل إلى 40 كلم/سا ومدى حتى 35 كلم، إضاءة LED أمامية وخلفية وفرامل قرصية. حالة شبه جديدة.',
+        image: makeProductIllustration(
+          '#3B0764', '#581C87', '#F97316', 'Trottinette 48V',
+          '<circle cx="-85" cy="58" r="28" fill="#0F172A" stroke="#F97316" stroke-width="6"/><circle cx="85" cy="58" r="28" fill="#0F172A" stroke="#F97316" stroke-width="6"/><path d="M-85 58 H65 L85 58 M65 58 L42 -78 H12" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="-65" y="42" width="115" height="14" rx="7" fill="#F97316"/>'
+        ),
+        isPro: false,
+        ownerId: 'seed_user_6',
+        createdAt: Date.now() - 1000 * 60 * 420
+      }
+    ];
+
+    // ---------- Application State ----------
+    let appState = {
+      activeTab: 'home',
+      searchQuery: '',
+      selectedWilaya: 'كل الولايات',
+      selectedCategory: 'الكل',
+      ads: [],
+      isPro: false,
+      usage: { monthKey: getCurrentMonthKey(), count: 0 },
+      pendingImageDataUrl: ''
+    };
+
+    function getCurrentMonthKey() {
+      const now = new Date();
+      const y = now.getFullYear();
+      const m = String(now.getMonth() + 1).padStart(2, '0');
+      return `${y}-${m}`;
+    }
+
+    // ---------- Safe LocalStorage Helpers ----------
+    function loadState() {
+      // Load Ads (Seed 6 realistic Algerian items on first launch)
+      try {
+        const rawAds = localStorage.getItem(STORAGE_KEYS.ADS);
+        if (rawAds) {
+          const parsed = JSON.parse(rawAds);
+          appState.ads = Array.isArray(parsed) && parsed.length > 0 ? parsed : [...INITIAL_SEED_ADS];
+        } else {
+          appState.ads = [...INITIAL_SEED_ADS];
+          localStorage.setItem(STORAGE_KEYS.ADS, JSON.stringify(appState.ads));
+        }
+      } catch (e) {
+        appState.ads = [...INITIAL_SEED_ADS];
+      }
+
+      // Load PRO status
+      try {
+        appState.isPro = localStorage.getItem(STORAGE_KEYS.PRO) === 'true';
+      } catch (e) {
+        appState.isPro = false;
+      }
+
+      // Load Monthly Usage
+      try {
+        const rawUsage = localStorage.getItem(STORAGE_KEYS.USAGE);
+        const currentMonth = getCurrentMonthKey();
+        if (rawUsage) {
+          const parsed = JSON.parse(rawUsage);
+          if (parsed && parsed.monthKey === currentMonth) {
+            appState.usage = { monthKey: currentMonth, count: Number(parsed.count) || 0 };
+          } else {
+            appState.usage = { monthKey: currentMonth, count: 0 };
+            localStorage.setItem(STORAGE_KEYS.USAGE, JSON.stringify(appState.usage));
+          }
+        } else {
+          appState.usage = { monthKey: currentMonth, count: 0 };
+          localStorage.setItem(STORAGE_KEYS.USAGE, JSON.stringify(appState.usage));
+        }
+      } catch (e) {
+        appState.usage = { monthKey: getCurrentMonthKey(), count: 0 };
+      }
+
+      // Ensure local user's existing ads reflect PRO status
+      if (appState.isPro) {
+        appState.ads = appState.ads.map(ad => ad.ownerId === 'local_user' ? { ...ad, isPro: true } : ad);
+      }
+    }
+
+    function saveAds() {
+      try {
+        localStorage.setItem(STORAGE_KEYS.ADS, JSON.stringify(appState.ads));
+      } catch (e) {
+        showToast('تم نشر الإعلان، لكن مساحة التخزين المحلية ممتلئة لصور كبيرة.');
+      }
+    }
+
+    function saveUsage() {
+      try {
+        localStorage.setItem(STORAGE_KEYS.USAGE, JSON.stringify(appState.usage));
+      } catch (e) {}
+    }
+
+    // ---------- Formatting & Normalization ----------
+    function formatDZD(num) {
+      return Number(num || 0).toLocaleString('en-US') + ' دج';
+    }
+
+    function formatWhatsAppUrl(phone, title) {
+      let digits = String(phone || '').replace(/\D/g, '');
+      if (digits.startsWith('0')) {
+        digits = '213' + digits.slice(1);
+      } else if (!digits.startsWith('213')) {
+        digits = '213' + digits;
+      }
+      const msg = encodeURIComponent(`السلام عليكم، شاهدت إعلانك "${title}" في تطبيق سوق BHK وأرغب في الاستفسار.`);
+      return `https://wa.me/${digits}?text=${msg}`;
+    }
+
+    function detectSocialInfo(url) {
+      const lower = String(url || '').toLowerCase();
+      if (lower.includes('facebook.com') || lower.includes('fb.')) {
+        return { label: 'زيارة صفحة فيسبوك البائع', gradient: 'from-blue-600 to-blue-700', icon: '📘' };
+      }
+      if (lower.includes('instagram.com')) {
+        return { label: 'زيارة حساب إنستغرام البائع', gradient: 'from-pink-600 via-rose-500 to-amber-500', icon: '📸' };
+      }
+      if (lower.includes('tiktok.com')) {
+        return { label: 'زيارة حساب تيك توك البائع', gradient: 'from-slate-900 to-slate-800', icon: '🎵' };
+      }
+      return { label: 'زيارة رابط التواصل الاجتماعي', gradient: 'from-orange-500 to-orange-600', icon: '🔗' };
+    }
+
+    function formatRelativeDate(timestamp) {
+      const diffMins = Math.max(1, Math.floor((Date.now() - timestamp) / 60000));
+      if (diffMins < 60) return `منذ ${diffMins} د`;
+      const diffHours = Math.floor(diffMins / 60);
+      if (diffHours < 24) return `منذ ${diffHours} سا`;
+      const diffDays = Math.floor(diffHours / 24);
+      return `منذ ${diffDays} يوم`;
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // ---------- Initialization of UI Controls ----------
+    function populateControls() {
+      // Wilaya Filter Dropdown (Top Header - all 58 Algerian Wilayas)
+      const wilayaFilter = document.getElementById('wilayaFilter');
+      wilayaFilter.innerHTML = `<option value="كل الولايات" class="text-slate-900">كل الولايات (58)</option>` +
+        WILAYAS.map(w => `<option value="${w.name}" class="text-slate-900">${w.code} - ${w.name}</option>`).join('');
+
+      wilayaFilter.addEventListener('change', (e) => {
+        appState.selectedWilaya = e.target.value;
+        renderProducts();
+      });
+
+      // Wilaya Select inside Add Form (all 58 Algerian Wilayas)
+      const adWilaya = document.getElementById('adWilaya');
+      adWilaya.innerHTML = WILAYAS.map(w => `<option value="${w.name}">${w.code} - ${w.name}</option>`).join('');
+
+      // Search Input
+      const searchInput = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('clearSearchBtn');
+      searchInput.addEventListener('input', (e) => {
+        appState.searchQuery = e.target.value.trim();
+        clearBtn.classList.toggle('hidden', !appState.searchQuery);
+        renderProducts();
+      });
+
+      renderCategoryPills();
+    }
+
+    function clearSearch() {
+      const searchInput = document.getElementById('searchInput');
+      searchInput.value = '';
+      appState.searchQuery = '';
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      renderProducts();
+    }
+
+    function renderCategoryPills() {
+      const container = document.getElementById('categoryFilterBar');
+      container.innerHTML = CATEGORIES.map(cat => {
+        const isActive = appState.selectedCategory === cat;
+        return `
+          <button
+            type="button"
+            onclick="selectCategory('${cat}')"
+            class="px-3.5 py-2 rounded-xl text-xs font-extrabold whitespace-nowrap transition shrink-0 min-h-[36px] ${
+              isActive
+                ? 'bg-orange-500 text-white shadow-md shadow-orange-500/30'
+                : 'bg-white/10 text-slate-200 hover:bg-white/20 border border-white/10'
+            }"
+          >${cat}</button>
+        `;
+      }).join('');
+    }
+
+    function selectCategory(category) {
+      appState.selectedCategory = category;
+      renderCategoryPills();
+      renderProducts();
+    }
+
+    function resetAllFilters() {
+      appState.searchQuery = '';
+      appState.selectedWilaya = 'كل الولايات';
+      appState.selectedCategory = 'الكل';
+      document.getElementById('searchInput').value = '';
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      document.getElementById('wilayaFilter').value = 'كل الولايات';
+      renderCategoryPills();
+      renderProducts();
+    }
+
+    // ---------- Render Header, Quota, PRO Status & Products ----------
+    function renderAccountUI() {
+      const badge = document.getElementById('headerAccountBadge');
+      const homeBanner = document.getElementById('homeProBanner');
+      const quotaCard = document.getElementById('quotaStatusCard');
+      const proActiveBox = document.getElementById('proActiveBox');
+      const proActivationBox = document.getElementById('proActivationBox');
+
+      if (appState.isPro) {
+        badge.className = 'min-h-[40px] px-3 py-1.5 rounded-full text-xs font-black flex items-center gap-1.5 transition active:scale-95 shadow pro-shimmer text-navy-950';
+        badge.innerHTML = '<span>👑</span><span>متجر موثوق PRO</span>';
+        homeBanner.classList.add('hidden');
+
+        quotaCard.className = 'rounded-2xl p-4 shadow-sm border border-amber-300 bg-gradient-to-l from-amber-50 to-orange-50 flex items-center justify-between gap-3';
+        quotaCard.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl pro-shimmer flex items-center justify-center text-xl shadow-sm shrink-0">👑</span>
+            <div>
+              <p class="text-xs font-black text-navy-900">حسابك: متجر موثوق PRO</p>
+              <p class="text-[11px] font-bold text-amber-800">نشر غير محدود + شارة توثيق ذهبية وأولوية في الأعلى</p>
+            </div>
+          </div>
+        `;
+
+        proActiveBox.classList.remove('hidden');
+        proActivationBox.classList.add('hidden');
+      } else {
+        const remaining = Math.max(0, FREE_MONTHLY_LIMIT - appState.usage.count);
+        const exhausted = remaining === 0;
+
+        badge.className = `min-h-[40px] px-3 py-1.5 rounded-full text-xs font-extrabold flex items-center gap-1.5 transition active:scale-95 shadow-sm border ${
+          exhausted
+            ? 'bg-red-500/20 text-red-200 border-red-400/40'
+            : 'bg-white/10 text-white border-white/15'
+        }`;
+        badge.innerHTML = `<span>⚡</span><span>مجاني ${appState.usage.count}/${FREE_MONTHLY_LIMIT}</span>`;
+        homeBanner.classList.remove('hidden');
+
+        quotaCard.className = `rounded-2xl p-4 shadow-sm border ${
+          exhausted ? 'bg-red-50 border-red-200' : 'bg-white border-slate-200'
+        }`;
+        quotaCard.innerHTML = `
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-xs font-black ${exhausted ? 'text-red-700' : 'text-navy-900'}">
+              ${exhausted ? '⚠️ انتهت فرصك المجانية لهذا الشهر (5/5)' : `الرصيد المجاني لهذا الشهر: متبقي ${remaining} من ${FREE_MONTHLY_LIMIT}`}
+            </span>
+            <button type="button" onclick="switchTab('pro')" class="text-[11px] font-black text-orange-600 bg-orange-100 px-2.5 py-1 rounded-lg">
+              ${exhausted ? 'تفعيل عرض 100 ألف' : 'عرض 100 ألف PRO'}
+            </button>
+          </div>
+          <div class="w-full h-2 rounded-full bg-slate-200 overflow-hidden">
+            <div class="h-full rounded-full transition-all ${exhausted ? 'bg-red-500' : 'bg-orange-500'}" style="width: ${Math.min(100, (appState.usage.count / FREE_MONTHLY_LIMIT) * 100)}%"></div>
+          </div>
+        `;
+
+        proActiveBox.classList.add('hidden');
+        proActivationBox.classList.remove('hidden');
+      }
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById('productsGrid');
+      const emptyState = document.getElementById('emptyState');
+      const countEl = document.getElementById('resultsCount');
+
+      const q = appState.searchQuery.toLowerCase();
+
+      const filtered = appState.ads.filter(ad => {
+        const matchWilaya = appState.selectedWilaya === 'كل الولايات' || ad.wilaya === appState.selectedWilaya;
+        const matchCat = appState.selectedCategory === 'الكل' || ad.category === appState.selectedCategory;
+        const matchSearch = !q ||
+          ad.title.toLowerCase().includes(q) ||
+          ad.description.toLowerCase().includes(q) ||
+          ad.wilaya.toLowerCase().includes(q) ||
+          ad.category.toLowerCase().includes(q);
+        return matchWilaya && matchCat && matchSearch;
+      });
+
+      // PRO ads ALWAYS appear at the top, then sorted newest first
+      filtered.sort((a, b) => {
+        if (Boolean(a.isPro) !== Boolean(b.isPro)) {
+          return a.isPro ? -1 : 1;
+        }
+        return (b.createdAt || 0) - (a.createdAt || 0);
+      });
+
+      countEl.textContent = `${filtered.length} إعلان`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      grid.innerHTML = filtered.map(ad => {
+        const proBadge = ad.isPro
+          ? `<div class="absolute top-2 right-2 pro-shimmer text-navy-950 text-[10px] font-black px-2 py-0.5 rounded-full shadow-md flex items-center gap-1">
+               <span>👑</span><span>متجر موثوق PRO</span>
+             </div>`
+          : '';
+
+        return `
+          <article class="bg-white rounded-2xl overflow-hidden shadow-sm border ${ad.isPro ? 'border-amber-300 ring-1 ring-amber-200/70' : 'border-slate-200/80'} flex flex-col justify-between transition hover:shadow-md">
+            <div onclick="openProductModal('${escapeHtml(ad.id)}')" class="cursor-pointer">
+              <div class="relative aspect-[4/3] bg-slate-200 overflow-hidden">
+                <img src="${ad.image}" alt="${escapeHtml(ad.title)}" loading="lazy" class="w-full h-full object-cover" />
+                ${proBadge}
+                <span class="absolute bottom-2 left-2 bg-navy-950/75 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-0.5 rounded-lg">${escapeHtml(ad.category)}</span>
+              </div>
+
+              <div class="p-2.5 space-y-1.5">
+                <h3 class="text-xs font-extrabold text-slate-800 line-clamp-2 min-h-[34px] leading-snug">${escapeHtml(ad.title)}</h3>
+                <p class="text-sm font-black text-orange-600">${formatDZD(ad.price)}</p>
+                <div class="flex items-center gap-1 text-[11px] font-bold text-slate-500">
+                  <svg class="w-3.5 h-3.5 text-navy-700 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="truncate">${escapeHtml(ad.wilaya)}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-2.5 pb-2.5 pt-0.5">
+              <button type="button" onclick="openProductModal('${escapeHtml(ad.id)}')" class="w-full min-h-[40px] py-2 rounded-xl bg-navy-900 hover:bg-navy-800 text-white text-xs font-extrabold transition active:scale-95 flex items-center justify-center gap-1.5">
+                <span>تفاصيل وتواصل</span>
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // ---------- Navigation Tabs ----------
+    function switchTab(tabName) {
+      appState.activeTab = tabName;
+
+      // Toggle sections
+      document.querySelectorAll('.tab-section').forEach(sec => sec.classList.add('hidden'));
+      const activeSection = document.getElementById(`tab-${tabName}`);
+      if (activeSection) {
+        activeSection.classList.remove('hidden');
+      }
+
+      // Show search/wilaya/category header block only on Home tab for clean app feel
+      const filtersBlock = document.getElementById('homeFiltersBlock');
+      filtersBlock.classList.toggle('hidden', tabName !== 'home');
+
+      // Update Bottom Nav active styles
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        const isCurrent = btn.dataset.tab === tabName;
+        const pill = btn.querySelector('.nav-pill');
+        if (isCurrent) {
+          btn.classList.remove('text-slate-500', 'font-bold');
+          btn.classList.add('text-orange-600', 'font-extrabold');
+          pill.classList.add('bg-orange-100');
+        } else {
+          btn.classList.remove('text-orange-600', 'font-extrabold');
+          btn.classList.add('text-slate-500', 'font-bold');
+          pill.classList.remove('bg-orange-100');
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Automatically prompt the 100 ألف offer when free monthly slots (5/5) are exhausted
+      if (tabName === 'add' && !appState.isPro && appState.usage.count >= FREE_MONTHLY_LIMIT) {
+        openLimitModal();
+      }
+    }
+
+    // ---------- Product Details Modal ----------
+    function openProductModal(adId) {
+      const ad = appState.ads.find(item => item.id === adId);
+      if (!ad) return;
+
+      document.getElementById('modalImage').src = ad.image;
+      document.getElementById('modalProBadge').classList.toggle('hidden', !ad.isPro);
+      document.getElementById('modalCategory').textContent = ad.category;
+      document.getElementById('modalWilaya').textContent = '📍 ' + ad.wilaya;
+      document.getElementById('modalDate').textContent = formatRelativeDate(ad.createdAt);
+      document.getElementById('modalTitle').textContent = ad.title;
+      document.getElementById('modalPrice').textContent = formatDZD(ad.price);
+      document.getElementById('modalDescription').textContent = ad.description;
+      document.getElementById('modalPhoneText').textContent = ad.phone;
+
+      // Direct call & WhatsApp
+      document.getElementById('modalCallBtn').href = `tel:${ad.phone.replace(/\s+/g, '')}`;
+      document.getElementById('modalWhatsappBtn').href = formatWhatsAppUrl(ad.phone, ad.title);
+
+      // Social Link (Optional)
+      const socialBtn = document.getElementById('modalSocialBtn');
+      if (ad.socialUrl && ad.socialUrl.trim() !== '') {
+        let validUrl = ad.socialUrl.trim();
+        if (!/^https?:\/\//i.test(validUrl)) {
+          validUrl = 'https://' + validUrl;
+        }
+        const info = detectSocialInfo(validUrl);
+        socialBtn.href = validUrl;
+        socialBtn.className = `w-full h-12 rounded-2xl bg-gradient-to-l ${info.gradient} text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-md active:scale-95 transition`;
+        document.getElementById('modalSocialLabel').textContent = `${info.icon} ${info.label}`;
+        socialBtn.classList.remove('hidden');
+      } else {
+        socialBtn.classList.add('hidden');
+      }
+
+      document.getElementById('productModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProductModal() {
+      document.getElementById('productModal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // ---------- Image Upload using FileReader ----------
+    function handleImageUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const rawDataUrl = e.target.result;
+        // Compress slightly using canvas so localStorage stays fast and reliable
+        const img = new Image();
+        img.onload = function() {
+          const maxDim = 800;
+          let w = img.width;
+          let h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) {
+              h = Math.round((h * maxDim) / w);
+              w = maxDim;
+            } else {
+              w = Math.round((w * maxDim) / h);
+              h = maxDim;
+            }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          const compressed = canvas.toDataURL('image/jpeg', 0.82);
+
+          appState.pendingImageDataUrl = compressed;
+          document.getElementById('imagePreviewEl').src = compressed;
+          document.getElementById('imagePlaceholderView').classList.add('hidden');
+          document.getElementById('imagePreviewContainer').classList.remove('hidden');
+        };
+        img.onerror = function() {
+          appState.pendingImageDataUrl = rawDataUrl;
+          document.getElementById('imagePreviewEl').src = rawDataUrl;
+          document.getElementById('imagePlaceholderView').classList.add('hidden');
+          document.getElementById('imagePreviewContainer').classList.remove('hidden');
+        };
+        img.src = rawDataUrl;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // ---------- Publish Ad & Free Monthly Limit Logic ----------
+    function handlePublishAd(event) {
+      event.preventDefault();
+
+      // Check monthly free limit for non-PRO users (5 posts/month)
+      if (!appState.isPro && appState.usage.count >= FREE_MONTHLY_LIMIT) {
+        openLimitModal();
+        return;
+      }
+
+      const title = document.getElementById('adTitle').value.trim();
+      const price = Number(document.getElementById('adPrice').value);
+      const category = document.getElementById('adCategory').value;
+      const wilaya = document.getElementById('adWilaya').value;
+      const phone = document.getElementById('adPhone').value.trim();
+      const socialUrl = document.getElementById('adSocial').value.trim();
+      const description = document.getElementById('adDesc').value.trim();
+      const termsAccepted = document.getElementById('adTermsCheck').checked;
+
+      if (!title || !price || price <= 0 || !phone || !description) {
+        showToast('يرجى ملء جميع الحقول الإجبارية بشكل صحيح.');
+        return;
+      }
+
+      if (!termsAccepted) {
+        showToast('يجب الموافقة على شروط الاستخدام والتعهد بعدم نشر سلع ممنوعة.');
+        return;
+      }
+
+      const defaultCategoryArt = makeProductIllustration(
+        '#0B1B36', '#183768', '#F97316', title.slice(0, 22),
+        '<rect x="-65" y="-55" width="130" height="110" rx="20" fill="#F97316" fill-opacity="0.9"/><path d="M-25 -5 L-5 20 L35 -25" stroke="#ffffff" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
+      );
+
+      const newAd = {
+        id: 'ad-' + Date.now(),
+        title,
+        price,
+        category,
+        wilaya,
+        phone,
+        socialUrl,
+        description,
+        image: appState.pendingImageDataUrl || defaultCategoryArt,
+        isPro: appState.isPro,
+        ownerId: 'local_user',
+        createdAt: Date.now()
+      };
+
+      appState.ads.unshift(newAd);
+      saveAds();
+
+      // Increment free usage counter if not PRO
+      if (!appState.isPro) {
+        appState.usage.count += 1;
+        saveUsage();
+      }
+
+      // Reset form
+      document.getElementById('addAdForm').reset();
+      appState.pendingImageDataUrl = '';
+      document.getElementById('imagePlaceholderView').classList.remove('hidden');
+      document.getElementById('imagePreviewContainer').classList.add('hidden');
+      document.getElementById('imagePreviewEl').src = '';
+
+      // Refresh UI & navigate Home
+      renderAccountUI();
+      resetAllFilters();
+      switchTab('home');
+
+      if (appState.isPro) {
+        showToast('تم نشر إعلانك بشارة متجر موثوق PRO في الأعلى!');
+      } else if (appState.usage.count >= FREE_MONTHLY_LIMIT) {
+        showToast('تم نشر منشورك الـ 5 (الأخير مجاناً هذا الشهر). فعّل عرض 100 ألف للنشر غير المحدود!');
+      } else {
+        showToast(`تم نشر إعلانك بنجاح! المتبقي لك هذا الشهر: ${FREE_MONTHLY_LIMIT - appState.usage.count} منشورات.`);
+      }
+    }
+
+    // ---------- Limit Reached Modal ----------
+    function openLimitModal() {
+      document.getElementById('limitModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLimitModal() {
+      document.getElementById('limitModal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function goToProFromLimit() {
+      closeLimitModal();
+      switchTab('pro');
+    }
+
+    // ---------- PRO Activation & BaridiMob Modal ----------
+    function fillDemoCode() {
+      document.getElementById('proCodeInput').value = DEMO_ACTIVATION_CODE;
+    }
+
+    function activateProCode() {
+      const input = document.getElementById('proCodeInput');
+      const entered = input.value.trim().toUpperCase();
+
+      if (entered === DEMO_ACTIVATION_CODE) {
+        appState.isPro = true;
+        try {
+          localStorage.setItem(STORAGE_KEYS.PRO, 'true');
+        } catch (e) {}
+
+        // Upgrade all user's existing ads immediately so the gold badge appears on all of them
+        appState.ads = appState.ads.map(ad => ad.ownerId === 'local_user' ? { ...ad, isPro: true } : ad);
+        saveAds();
+
+        renderAccountUI();
+        renderProducts();
+        showToast('مبروك! تم تفعيل حسابك إلى متجر موثوق PRO غير محدود 👑');
+      } else {
+        showToast('كود التفعيل غير صحيح. جرب الكود التجريبي: BHK2026');
+      }
+    }
+
+    function openBaridiMobModal() {
+      document.getElementById('baridiModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBaridiModal() {
+      document.getElementById('baridiModal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // ---------- General Modal & Toast Utilities ----------
+    function closeModalOnBackdrop(event, modalId) {
+      if (event.target.id === modalId) {
+        document.getElementById(modalId).classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    }
+
+    let toastTimer = null;
+    function showToast(message) {
+      const toast = document.getElementById('toastEl');
+      toast.textContent = message;
+      toast.classList.remove('hidden');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3400);
+    }
+
+    // Android WebView hardware Back Button bridge
+    window.handleAndroidBack = function() {
+      const modals = ['productModal', 'limitModal', 'baridiModal'];
+      for (const id of modals) {
+        const el = document.getElementById(id);
+        if (!el.classList.contains('hidden')) {
+          el.classList.add('hidden');
+          document.body.style.overflow = '';
+          return true;
+        }
+      }
+      if (appState.activeTab !== 'home') {
+        switchTab('home');
+        return true;
+      }
+      return false;
+    };
+
+    // ---------- Bootstrap App ----------
+    document.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      populateControls();
+      renderAccountUI();
+      renderProducts();
+    });
+  </script>
+</body>
+</html>
